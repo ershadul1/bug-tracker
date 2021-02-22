@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { signup } from '../Redux/actions/users';
+import { login } from '../../Redux/actions/users';
 
-const SignUp = props => {
+const Login = props => {
   const [state, setState] = useState({
     username: null,
     password: null,
@@ -19,12 +19,12 @@ const SignUp = props => {
   };
 
   const handleSubmit = () => {
-    props.signup(state);
+    props.login(state);
   };
 
   return (
     <>
-      <h1>Sign Up Page</h1>
+      <h1>Login Page</h1>
       <form>
         <label htmlFor="username">
           <p>Username</p>
@@ -34,19 +34,20 @@ const SignUp = props => {
           <p>Password</p>
           <input type="password" id="password" name="password" required onChange={handleChange} />
         </label>
-        <button type="button" onClick={handleSubmit}>Sign Up</button>
+        <button type="button" onClick={handleSubmit}>Login</button>
       </form>
-      <p>Already have an account!</p>
-      <Link to="/">
-        <button type="button">Login</button>
+      <p>Don&apos;t have an account!</p>
+      <Link to="/signup">
+        <button type="button">SignUp</button>
       </Link>
+
     </>
   );
 };
 
-SignUp.propTypes = {
-  signup: PropTypes.func.isRequired,
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = { signup };
-export default connect(null, mapDispatchToProps)(SignUp);
+const mapDispatchToProps = { login };
+export default connect(null, mapDispatchToProps)(Login);

@@ -2,13 +2,17 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { fetchProjects } from '../Redux/actions/projects';
+import { fetchProjects } from '../../Redux/actions/projects';
+import { changeRoute, changeNavTitle } from '../../Redux/actions/route';
+import styles from './ProjectList.module.css';
 
 const ProjectList = ({
-  fetchProjects, projects, user,
+  fetchProjects, projects, user, match, changeRoute, changeNavTitle,
 }) => {
   useEffect(() => {
     fetchProjects(user.token);
+    changeRoute(match.url);
+    changeNavTitle('Projects');
   }, []);
 
   if (!projects.loaded) {
@@ -25,11 +29,11 @@ const ProjectList = ({
 
   return (
     <>
-      <Link to="/new/project">
+      <Link to="/new/project" className={styles.newproject}>
         Create a new project
       </Link>
       {projects.data.map(item => (
-        <Link to={`/projects/${item.id}`} key={item.id}>
+        <Link to={`/projects/${item.id}`} key={item.id} className={styles.card}>
           <div>
             <p>
               Title:
@@ -39,7 +43,6 @@ const ProjectList = ({
               Description:
               {item.description}
             </p>
-            <br />
           </div>
         </Link>
       ))}
@@ -49,13 +52,16 @@ const ProjectList = ({
 
 ProjectList.propTypes = {
   fetchProjects: PropTypes.func.isRequired,
+  changeRoute: PropTypes.func.isRequired,
+  changeNavTitle: PropTypes.func.isRequired,
   projects: PropTypes.instanceOf(Object).isRequired,
   user: PropTypes.instanceOf(Object).isRequired,
+  match: PropTypes.instanceOf(Object).isRequired,
 };
 
 const mapStateToProps = state => ({
   user: state.user,
   projects: state.projects,
 });
-const mapDispatchToProps = { fetchProjects };
+const mapDispatchToProps = { fetchProjects, changeRoute, changeNavTitle };
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectList);

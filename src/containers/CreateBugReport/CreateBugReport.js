@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createBugReport } from '../Redux/actions/bugs';
-import { fetchProjects } from '../Redux/actions/projects';
-import { autoLogin } from '../Redux/actions/users';
+import { createBugReport } from '../../Redux/actions/bugs';
+import { fetchProjects } from '../../Redux/actions/projects';
+import { changeRoute, changeNavTitle } from '../../Redux/actions/route';
 
 const CreateBugReport = ({
-  user, projects, createBugReport, history, fetchProjects, autoLogin,
+  user, projects, createBugReport, history,
+  fetchProjects, changeRoute, match, changeNavTitle,
 }) => {
   useEffect(() => {
-    autoLogin(user.token);
     fetchProjects(user.token);
+    changeRoute(match.url);
+    changeNavTitle('Report A Bug');
   }, []);
 
   const [state, setState] = useState({
@@ -36,7 +38,7 @@ const CreateBugReport = ({
   };
 
   if (!projects.loaded) {
-    return <div>Loading projects list</div>;
+    return <div>Loading project list</div>;
   }
 
   return (
@@ -83,10 +85,12 @@ const CreateBugReport = ({
 CreateBugReport.propTypes = {
   createBugReport: PropTypes.func.isRequired,
   fetchProjects: PropTypes.func.isRequired,
-  autoLogin: PropTypes.func.isRequired,
+  changeRoute: PropTypes.func.isRequired,
+  changeNavTitle: PropTypes.func.isRequired,
   history: PropTypes.instanceOf(Object).isRequired,
   user: PropTypes.instanceOf(Object).isRequired,
   projects: PropTypes.instanceOf(Object).isRequired,
+  match: PropTypes.instanceOf(Object).isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -94,5 +98,7 @@ const mapStateToProps = state => ({
   projects: state.projects,
 });
 
-const mapDispatchToProps = { createBugReport, fetchProjects, autoLogin };
+const mapDispatchToProps = {
+  createBugReport, fetchProjects, changeRoute, changeNavTitle,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(CreateBugReport);

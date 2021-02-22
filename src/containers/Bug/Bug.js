@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchBugReport, createComment } from '../Redux/actions/bugs';
-import { autoLogin } from '../Redux/actions/users';
+import { fetchBugReport, createComment } from '../../Redux/actions/bugs';
 import styles from './Bug.module.css';
 
 const Bug = ({
-  currentBugReport, createComment, autoLogin, match, user, fetchBugReport,
+  currentBugReport, createComment, match, user, fetchBugReport,
 }) => {
   useEffect(() => {
-    autoLogin(user.token);
     fetchBugReport(user.token, parseInt(match.params.id, 10));
   }, []);
 
@@ -66,7 +64,6 @@ Bug.propTypes = {
   currentBugReport: PropTypes.instanceOf(Object).isRequired,
   fetchBugReport: PropTypes.func.isRequired,
   createComment: PropTypes.func.isRequired,
-  autoLogin: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -75,5 +72,5 @@ const mapStateToProps = state => ({
   currentBugReport: state.currentBugReport,
 });
 
-const mapDispatchToProps = { fetchBugReport, createComment, autoLogin };
+const mapDispatchToProps = { fetchBugReport, createComment };
 export default connect(mapStateToProps, mapDispatchToProps)(Bug);

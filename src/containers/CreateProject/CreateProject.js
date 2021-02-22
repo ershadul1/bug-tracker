@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createProject } from '../Redux/actions/projects';
+import { createProject } from '../../Redux/actions/projects';
 
 const CreateProject = props => {
   const [state, setState] = useState({
