@@ -1,0 +1,15 @@
+.card {
+  display: block;
+  text-decoration: none;
+  border: 1px solid #eee;
+  margin: 4px 0;
+  padding: 2px 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vh;
+  font-weight: 400;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+}
