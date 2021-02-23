@@ -36,12 +36,7 @@ const ProjectList = ({
         <Link to={`/projects/${item.id}`} key={item.id} className={styles.card}>
           <div>
             <p>
-              Title:
               {item.title}
-            </p>
-            <p>
-              Description:
-              {item.description}
             </p>
           </div>
         </Link>

@@ -1,0 +1,28 @@
+.newproject {
+  display: block;
+  text-decoration: none;
+  background: rgb(151, 228, 147);
+  background: linear-gradient(rgb(151, 228, 147), rgb(172, 233, 169));
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  border-radius: 3px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.5vh;
+  font-weight: 700;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  border: 1px solid #eee;
+  margin: 4px 0;
+  background-color: #fff;
+  padding: 2px 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vh;
+  font-weight: 400;
+  color: #000;
+}
