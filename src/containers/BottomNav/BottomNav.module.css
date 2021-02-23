@@ -1,0 +1,39 @@
+.container {
+  background: rgb(49, 57, 68);
+  background: linear-gradient(rgb(49, 57, 68), rgb(109, 120, 133));
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  height: 10vh;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.container a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 25%;
+  height: 10vh;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 2vh;
+  padding: 2px;
+}
+
+.selected {
+  background: rgb(66, 181, 232);
+  background: linear-gradient(rgb(161, 204, 223), rgb(66, 181, 232));
+  border: 1px solid #719ece;
+  border-radius: 3px;
+}
+
+.icon {
+  display: block;
+  width: 40%;
+  height: 40%;
+}
