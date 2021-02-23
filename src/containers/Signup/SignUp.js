@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { signup } from '../../Redux/actions/users';
+import { changeNavTitle } from '../../Redux/actions/route';
+import styles from './SignUp.module.css';
 
 const SignUp = props => {
+  useEffect(() => {
+    props.changeNavTitle('Sign Up');
+  }, []);
+
   const [state, setState] = useState({
     username: null,
     password: null,
@@ -20,25 +26,25 @@ const SignUp = props => {
 
   const handleSubmit = () => {
     props.signup(state);
+    props.history.push('/projects');
   };
 
   return (
     <>
-      <h1>Sign Up Page</h1>
       <form>
-        <label htmlFor="username">
+        <label htmlFor="username" className={styles['font-style']}>
           <p>Username</p>
-          <input type="text" id="username" name="username" required onChange={handleChange} />
+          <input className={styles.input} type="text" id="username" name="username" required onChange={handleChange} />
         </label>
-        <label htmlFor="password">
+        <label htmlFor="password" className={styles['font-style']}>
           <p>Password</p>
-          <input type="password" id="password" name="password" required onChange={handleChange} />
+          <input className={styles.input} type="password" id="password" name="password" required onChange={handleChange} />
         </label>
-        <button type="button" onClick={handleSubmit}>Sign Up</button>
+        <button className={styles['submit-btn']} type="button" onClick={handleSubmit}>Sign Up</button>
       </form>
-      <p>Already have an account!</p>
+      <p className={styles['font-style']}>Already have an account!</p>
       <Link to="/">
-        <button type="button">Login</button>
+        <button className={styles.btn} type="button">Login</button>
       </Link>
     </>
   );
@@ -46,7 +52,9 @@ const SignUp = props => {
 
 SignUp.propTypes = {
   signup: PropTypes.func.isRequired,
+  changeNavTitle: PropTypes.func.isRequired,
+  history: PropTypes.instanceOf(Object).isRequired,
 };
 
-const mapDispatchToProps = { signup };
+const mapDispatchToProps = { signup, changeNavTitle };
 export default connect(null, mapDispatchToProps)(SignUp);
