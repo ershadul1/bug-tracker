@@ -10,12 +10,13 @@ const login = credentials => dispatch => {
   })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', data);
-      localStorage.setItem('bug-tracker', data.token);
+      if (data.status === 'SUCCESS') {
+        localStorage.setItem('bug-tracker', data.token);
+      }
       dispatch({ type: 'LOGIN', payload: data });
     })
     .catch(error => {
-      console.error('Error:', error);
+      throw new Error('Error:', error);
     });
 };
 
@@ -29,12 +30,13 @@ const signup = credentials => dispatch => {
   })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', data);
-      localStorage.setItem('bug-tracker', data.token);
+      if (data.status === 'SUCCESS') {
+        localStorage.setItem('bug-tracker', data.token);
+      }
       dispatch({ type: 'SIGNUP', payload: data });
     })
     .catch(error => {
-      console.error('Error:', error);
+      throw new Error('Error:', error);
     });
 };
 
@@ -49,12 +51,20 @@ const autoLogin = token => dispatch => {
   })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', data);
       dispatch({ type: 'AUTO_LOGIN', payload: data });
     })
     .catch(error => {
-      console.error('Error:', error);
+      throw new Error('Error:', error);
     });
 };
 
-export { login, signup, autoLogin };
+const logout = () => {
+  localStorage.removeItem('bug-tracker');
+  return ({
+    type: 'LOGOUT',
+  });
+};
+
+export {
+  login, signup, autoLogin, logout,
+};
