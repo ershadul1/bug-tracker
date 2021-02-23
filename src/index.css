@@ -4,10 +4,34 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: rgb(243, 244, 246);
 }
 
 .app {
   min-height: 78vh;
   padding: 15px;
-  background-color: rgb(243, 244, 246);
+}
+
+.high {
+  color: #ff7860;
+}
+
+.medium {
+  color: #ffaa0d;
+}
+
+.low {
+  color: #ffe344;
+}
+
+.open {
+  background-color: #fff;
+}
+
+.assigned {
+  background-color: #c8eeff;
+}
+
+.resolved {
+  background-color: #b9ffb4;
 }
