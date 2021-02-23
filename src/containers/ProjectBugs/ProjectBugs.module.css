@@ -1,0 +1,27 @@
+.card {
+  display: block;
+  text-decoration: none;
+  border: 1px solid #eee;
+  margin: 4px 0;
+  padding: 2px 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vh;
+  font-weight: 400;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.project-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 4vh;
+  font-weight: 500;
+}
+
+.project-description {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vh;
+  font-weight: 400;
+}

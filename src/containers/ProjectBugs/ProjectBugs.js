@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { fetchProjectBugs } from '../../Redux/actions/projects';
 import styles from './ProjectBugs.module.css';
+import { changeNavTitle } from '../../Redux/actions/route';
+import capitalize from '../../helpers/capitalize';
+import truncate from '../../helpers/truncate';
 
 const ProjectBugs = ({
-  fetchProjectBugs, currentProjectBugs, user, match,
+  fetchProjectBugs, currentProjectBugs, user, match, changeNavTitle,
 }) => {
   useEffect(() => {
     fetchProjectBugs(user.token, parseInt(match.params.id, 10));
+    changeNavTitle('Project Bugs');
   }, []);
 
   if (!currentProjectBugs.loaded) {
@@ -23,9 +27,6 @@ const ProjectBugs = ({
   if (currentProjectBugs.data.bugs.length === 0) {
     return (
       <>
-        <Link to="/new/bug">
-          Create a new bug report
-        </Link>
         <div>There are no bug reports for this project</div>
       </>
     );
@@ -33,19 +34,16 @@ const ProjectBugs = ({
 
   return (
     <>
-      <Link to="/new/bug">
-        Create a new bug report
-      </Link>
+      <h1 className={styles['project-title']}>{currentProjectBugs.data.project.title}</h1>
+      <p className={styles['project-description']}>{currentProjectBugs.data.project.description}</p>
       {currentProjectBugs.data.bugs.map(item => (
-        <Link to={`/bugs/${item.id}`} key={item.id} className={styles.card}>
-          <div key={item.id}>
+        <Link to={`/bugs/${item.id}`} key={item.id} className={`${styles.card} ${item.priority} ${item.status}`}>
+          <div key={item.id} className={styles.info}>
             <p>
-              Title:
-              {item.title}
+              {capitalize(truncate(item.title, 20))}
             </p>
             <p>
-              Description:
-              {item.description}
+              {item.status}
             </p>
           </div>
         </Link>
@@ -56,6 +54,7 @@ const ProjectBugs = ({
 
 ProjectBugs.propTypes = {
   fetchProjectBugs: PropTypes.func.isRequired,
+  changeNavTitle: PropTypes.func.isRequired,
   currentProjectBugs: PropTypes.instanceOf(Object).isRequired,
   user: PropTypes.instanceOf(Object).isRequired,
   match: PropTypes.instanceOf(Object).isRequired,
@@ -67,5 +66,5 @@ const mapStateToProps = state => ({
   currentProjectBugs: state.currentProjectBugs,
 });
 
-const mapDispatchToProps = { fetchProjectBugs };
+const mapDispatchToProps = { fetchProjectBugs, changeNavTitle };
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectBugs);
