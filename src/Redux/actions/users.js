@@ -12,8 +12,13 @@ const login = credentials => dispatch => {
     .then(data => {
       if (data.status === 'SUCCESS') {
         localStorage.setItem('bug-tracker', data.token);
+        dispatch({ type: 'LOGIN', payload: data });
+      } else {
+        dispatch({
+          type: 'CHANGE_NAV_TITLE',
+          payload: data.error,
+        });
       }
-      dispatch({ type: 'LOGIN', payload: data });
     })
     .catch(error => {
       throw new Error('Error:', error);
@@ -32,8 +37,13 @@ const signup = credentials => dispatch => {
     .then(data => {
       if (data.status === 'SUCCESS') {
         localStorage.setItem('bug-tracker', data.token);
+        dispatch({ type: 'SIGNUP', payload: data });
+      } else {
+        dispatch({
+          type: 'CHANGE_NAV_TITLE',
+          payload: data.error,
+        });
       }
-      dispatch({ type: 'SIGNUP', payload: data });
     })
     .catch(error => {
       throw new Error('Error:', error);
