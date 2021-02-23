@@ -1,0 +1,32 @@
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid rgb(235, 232, 232);
+  border-radius: 5px;
+}
+
+.user {
+  font-family: 'Roboto', sans-serif;
+  font-size: 4vh;
+  font-weight: 500;
+  padding: 20px;
+  border: 1px solid lightgrey;
+  text-align: center;
+  background-color: rgb(66, 181, 232);
+  color: #fff;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.logout {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  background: rgb(255, 132, 116);
+  color: rgb(255, 255, 255);
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.2vh;
+  font-weight: 700;
+  margin: 10px 0;
+  border-radius: 5px;
+}
