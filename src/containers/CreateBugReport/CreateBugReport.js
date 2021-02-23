@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { createBugReport } from '../../Redux/actions/bugs';
 import { fetchProjects } from '../../Redux/actions/projects';
 import { changeRoute, changeNavTitle } from '../../Redux/actions/route';
+import styles from './CreateBugReport.module.css';
 
 const CreateBugReport = ({
   user, projects, createBugReport, history,
@@ -43,40 +44,40 @@ const CreateBugReport = ({
 
   return (
     <>
-      <h1>Create a bug report</h1>
       <form>
         <label htmlFor="title">
-          <p>title</p>
-          <input type="text" id="title" name="title" required onChange={handleChange} />
+          <p className={styles['font-style']}>Title:</p>
+          <input placeholder="Give a title to the bug..." className={styles.input} type="text" id="title" name="title" required onChange={handleChange} />
         </label>
         <label htmlFor="description">
-          <p>description</p>
-          <input type="text" id="description" name="description" required onChange={handleChange} />
+          <p className={styles['font-style']}>Description:</p>
+          <textarea placeholder="Write some details..." className={styles.description} type="text" id="description" name="description" required onChange={handleChange} />
         </label>
 
-        <select name="project_id" onChange={handleChange}>
-          <option>Select a project</option>
-          {projects.data.map(item => (
-            <option key={item.id} value={parseInt(item.id, 10)}>
-              {item.title}
+        <div className={styles['select-container']}>
+          <select className={styles.select} name="project_id" onChange={handleChange}>
+            <option>Select a project</option>
+            {projects.data.map(item => (
+              <option key={item.id} value={parseInt(item.id, 10)}>
+                {item.title}
+              </option>
+            ))}
+          </select>
+
+          <select className={styles.select} name="priority" onChange={handleChange}>
+            <option>Select priority</option>
+            <option value="high">
+              high
             </option>
-          ))}
-        </select>
-
-        <select name="priority" onChange={handleChange}>
-          <option>Select a priority</option>
-          <option value="high">
-            high
-          </option>
-          <option value="medium">
-            medium
-          </option>
-          <option value="low">
-            low
-          </option>
-        </select>
-
-        <button type="button" onClick={handleSubmit}>Submit</button>
+            <option value="medium">
+              medium
+            </option>
+            <option value="low">
+              low
+            </option>
+          </select>
+        </div>
+        <button className={styles['submit-btn']} type="button" onClick={handleSubmit}>Submit</button>
       </form>
     </>
   );
