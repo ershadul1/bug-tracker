@@ -1,7 +1,7 @@
-import URL from './url';
+import URL from '../../url';
 
 const login = credentials => dispatch => {
-  fetch(`${URL}/login`, {
+  fetch(`${URL}/sessions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ const login = credentials => dispatch => {
         dispatch({ type: 'LOGIN', payload: data });
       } else {
         dispatch({
-          type: 'CHANGE_NAV_TITLE',
+          type: 'ERROR',
           payload: data.error,
         });
       }
@@ -40,7 +40,7 @@ const signup = credentials => dispatch => {
         dispatch({ type: 'SIGNUP', payload: data });
       } else {
         dispatch({
-          type: 'CHANGE_NAV_TITLE',
+          type: 'ERROR',
           payload: data.error,
         });
       }
@@ -50,18 +50,22 @@ const signup = credentials => dispatch => {
     });
 };
 
-const autoLogin = token => dispatch => {
-  const pass = token || localStorage.getItem('bug-tracker');
-  fetch(`${URL}/auto_login`, {
+const getUser = token => dispatch => {
+  fetch(`${URL}/users`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${pass}`,
+      Authorization: `Bearer ${token}`,
     },
   })
     .then(response => response.json())
     .then(data => {
-      dispatch({ type: 'AUTO_LOGIN', payload: data });
+      if (data.status === 'SUCCESS') {
+        dispatch({ type: 'AUTO_LOGIN', payload: data });
+        dispatch({ type: 'REMOVE_ERROR', payload: data });
+      } else {
+        localStorage.removeItem('bug-tracker');
+      }
     })
     .catch(error => {
       throw new Error('Error:', error);
@@ -76,5 +80,5 @@ const logout = () => {
 };
 
 export {
-  login, signup, autoLogin, logout,
+  login, signup, getUser, logout,
 };
