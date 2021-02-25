@@ -1,7 +1,7 @@
-import URL from './url';
+import URL from '../../url';
 
 const fetchProjects = token => dispatch => {
-  fetch(`${URL}/projects/all`, {
+  fetch(`${URL}/projects`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ const fetchProjects = token => dispatch => {
 };
 
 const fetchProjectBugs = (token, id) => dispatch => {
-  fetch(`${URL}/projects?id=${id}`, {
+  fetch(`${URL}/projects/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -1,7 +1,7 @@
-import URL from './url';
+import URL from '../../url';
 
 const fetchBugs = token => dispatch => {
-  fetch(`${URL}/projects/bugs/all`, {
+  fetch(`${URL}/projects/1/bugs`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -17,8 +17,8 @@ const fetchBugs = token => dispatch => {
     });
 };
 
-const fetchBugReport = (token, id) => dispatch => {
-  fetch(`${URL}/projects/bugs?id=${id}`, {
+const fetchBugReport = (token, params) => dispatch => {
+  fetch(`${URL}/projects/${params.project_id}/bugs/${params.bug_id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const fetchBugReport = (token, id) => dispatch => {
 };
 
 const createBugReport = (token, data) => dispatch => {
-  fetch(`${URL}/projects/bugs`, {
+  fetch(`${URL}/projects/${data.project_id}/bugs`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -52,14 +52,14 @@ const createBugReport = (token, data) => dispatch => {
     });
 };
 
-const createComment = (token, comment) => dispatch => {
-  fetch(`${URL}/projects/bugs/comments`, {
+const createComment = (token, data) => dispatch => {
+  fetch(`${URL}/projects/${data.project_id}/bugs/${data.bug_id}/comments`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(comment),
+    body: JSON.stringify({ content: data.content }),
   })
     .then(response => response.json())
     .then(data => {
@@ -71,14 +71,13 @@ const createComment = (token, comment) => dispatch => {
     });
 };
 
-const assignBug = (token, assign) => dispatch => {
-  fetch(`${URL}/projects/bugs/assigns`, {
+const assignBug = (token, data) => dispatch => {
+  fetch(`${URL}/projects/${data.project_id}/bugs/${data.bug_id}/assigns`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(assign),
   })
     .then(response => response.json())
     .then(data => {
@@ -90,14 +89,13 @@ const assignBug = (token, assign) => dispatch => {
     });
 };
 
-const resolveBug = (token, resolve) => dispatch => {
-  fetch(`${URL}/projects/bugs/resolves`, {
+const resolveBug = (token, data) => dispatch => {
+  fetch(`${URL}/projects/${data.project_id}/bugs/${data.bug_id}/resolves`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(resolve),
   })
     .then(response => response.json())
     .then(data => {
@@ -109,14 +107,13 @@ const resolveBug = (token, resolve) => dispatch => {
     });
 };
 
-const cancelResolve = (token, resolve) => dispatch => {
-  fetch(`${URL}/projects/bugs/resolves`, {
+const cancelResolve = (token, data) => dispatch => {
+  fetch(`${URL}/projects/${data.project_id}/bugs/${data.bug_id}/resolves`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(resolve),
   })
     .then(response => response.json())
     .then(data => {
@@ -128,14 +125,13 @@ const cancelResolve = (token, resolve) => dispatch => {
     });
 };
 
-const cancelAssign = (token, assign) => dispatch => {
-  fetch(`${URL}/projects/bugs/assigns`, {
+const cancelAssign = (token, data) => dispatch => {
+  fetch(`${URL}/projects/${data.project_id}/bugs/${data.bug_id}/assigns`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(assign),
   })
     .then(response => response.json())
     .then(data => {
