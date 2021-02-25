@@ -6,6 +6,7 @@ import currentBugReducer from './currentBug';
 import currentProjectBugsReducer from './currentProjectBugs';
 import currentRouteReducer from './currentRoute';
 import navTitleReducer from './navTitle';
+import errorReducer from './error';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   currentBugReport: currentBugReducer,
   currentRoute: currentRouteReducer,
   navTitle: navTitleReducer,
+  error: errorReducer,
 });
 
 export default rootReducer;
