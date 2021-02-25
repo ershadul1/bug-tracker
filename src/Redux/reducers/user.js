@@ -9,7 +9,7 @@ const userReducer = (state = initialState, action) => {
       return { ...state, ...action.payload };
     }
     case 'AUTO_LOGIN': {
-      return { ...state, user: { ...action.payload } };
+      return { ...state, ...action.payload };
     }
     case 'SIGNUP': {
       return { ...state, ...action.payload };
