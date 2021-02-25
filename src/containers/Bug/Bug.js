@@ -12,7 +12,7 @@ const Bug = ({
   fetchBugReport, assignBug, resolveBug, cancelResolve, cancelAssign,
 }) => {
   useEffect(() => {
-    fetchBugReport(user.token, parseInt(match.params.id, 10));
+    fetchBugReport(user.token, match.params);
   }, []);
 
   const [state, setState] = useState({
@@ -21,6 +21,10 @@ const Bug = ({
     bug_id: null,
   });
 
+  if (!currentBugReport.loaded) {
+    return <div>Loading bug report...</div>;
+  }
+
   const handleChange = e => {
     const { value, name } = e.target;
     setState({
@@ -28,48 +32,35 @@ const Bug = ({
       [name]: value,
       user_id: user.user.id,
       bug_id: currentBugReport.data.bug.id,
+      project_id: currentBugReport.data.bug.project_id,
     });
   };
 
+  const data = {
+    user_id: user.user.id,
+    bug_id: currentBugReport.data.bug.id,
+    project_id: currentBugReport.data.bug.project_id,
+  };
+
   const handleAssign = () => {
-    const assign = {
-      user_id: user.user.id,
-      bug_id: currentBugReport.data.bug.id,
-    };
-    assignBug(user.token, assign);
+    assignBug(user.token, data);
   };
 
   const handleCancelAssign = () => {
-    const assign = {
-      user_id: user.user.id,
-      bug_id: currentBugReport.data.bug.id,
-    };
-    cancelAssign(user.token, assign);
+    cancelAssign(user.token, data);
   };
 
   const handleResolve = () => {
-    const resolve = {
-      user_id: user.user.id,
-      bug_id: currentBugReport.data.bug.id,
-    };
-    resolveBug(user.token, resolve);
+    resolveBug(user.token, data);
   };
 
   const handleCancelResolve = () => {
-    const resolve = {
-      user_id: user.user.id,
-      bug_id: currentBugReport.data.bug.id,
-    };
-    cancelResolve(user.token, resolve);
+    cancelResolve(user.token, data);
   };
 
   const handleSubmit = () => {
     createComment(user.token, state);
   };
-
-  if (!currentBugReport.loaded) {
-    return <div>Loading bug report...</div>;
-  }
 
   let bugControlls;
 
@@ -135,7 +126,7 @@ const Bug = ({
         </p>
         <p className={styles['font-style']}>
           <b>Author:</b>
-          {currentBugReport.data.author_name}
+          {currentBugReport.data.author_name || ''}
         </p>
         <p className={styles['font-style']}>
           <b>Status:</b>
@@ -158,10 +149,6 @@ const Bug = ({
             item => (
               <div key={item.id} className={styles.comment}>
                 <p>{item.content}</p>
-                <p>
-                  Author:
-                  {currentBugReport.data.users.filter(user => user.id === item.user_id)[0].username}
-                </p>
               </div>
             ),
           )}
