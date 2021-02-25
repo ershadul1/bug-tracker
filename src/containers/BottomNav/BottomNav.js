@@ -10,7 +10,7 @@ import more from '../../assets/more.svg';
 const BottomNav = ({ currentRoute }) => (
   <>
     <div className={styles.container}>
-      <Link to="/new/bug" className={currentRoute === '/new/bug' ? styles.selected : null}>
+      <Link to="/bugs/new" className={currentRoute === '/bugs/new' ? styles.selected : null}>
         <img src={add} alt="add-bug" className={styles.icon} />
         <div>Add Bug Report</div>
       </Link>

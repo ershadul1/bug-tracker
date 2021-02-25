@@ -24,12 +24,20 @@ const ProjectList = ({
   }
 
   if (projects.data.length === 0) {
-    return <div>There are no projects</div>;
+    return (
+      <>
+        <Link to="/projects/new" className={styles.newproject}>
+          Create a new project
+        </Link>
+        <br />
+        <div>There are no projects</div>
+      </>
+    );
   }
 
   return (
     <>
-      <Link to="/new/project" className={styles.newproject}>
+      <Link to="/projects/new" className={styles.newproject}>
         Create a new project
       </Link>
       {projects.data.map(item => (

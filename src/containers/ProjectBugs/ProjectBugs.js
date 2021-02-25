@@ -12,7 +12,7 @@ const ProjectBugs = ({
   fetchProjectBugs, currentProjectBugs, user, match, changeNavTitle,
 }) => {
   useEffect(() => {
-    fetchProjectBugs(user.token, parseInt(match.params.id, 10));
+    fetchProjectBugs(user.token, match.params.project_id);
     changeNavTitle('Project Bugs');
   }, []);
 
@@ -37,7 +37,7 @@ const ProjectBugs = ({
       <h1 className={styles['project-title']}>{currentProjectBugs.data.project.title}</h1>
       <p className={styles['project-description']}>{currentProjectBugs.data.project.description}</p>
       {currentProjectBugs.data.bugs.map(item => (
-        <Link to={`/bugs/${item.id}`} key={item.id} className={`${styles.card} ${item.priority} ${item.status}`}>
+        <Link to={`/projects/${item.project_id}/bugs/${item.id}`} key={item.id} className={`${styles.card} ${item.priority} ${item.status}`}>
           <div key={item.id} className={styles.info}>
             <p>
               {capitalize(truncate(item.title, 20))}
