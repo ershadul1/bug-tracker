@@ -35,7 +35,7 @@ const CreateBugReport = ({
 
   const handleSubmit = () => {
     createBugReport(user.token, state);
-    history.push(`/projects/${state.project_id}`);
+    history.push('/bugs');
   };
 
   if (!projects.loaded) {
@@ -44,7 +44,7 @@ const CreateBugReport = ({
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="title">
           <p className={styles['font-style']}>Title:</p>
           <input placeholder="Give a title to the bug..." className={styles.input} type="text" id="title" name="title" required onChange={handleChange} />
@@ -55,8 +55,8 @@ const CreateBugReport = ({
         </label>
 
         <div className={styles['select-container']}>
-          <select className={styles.select} name="project_id" onChange={handleChange}>
-            <option>Select a project</option>
+          <select required className={styles.select} name="project_id" onChange={handleChange}>
+            <option value="">Select a project</option>
             {projects.data.map(item => (
               <option key={item.id} value={parseInt(item.id, 10)}>
                 {item.title}
@@ -64,8 +64,8 @@ const CreateBugReport = ({
             ))}
           </select>
 
-          <select className={styles.select} name="priority" onChange={handleChange}>
-            <option>Select priority</option>
+          <select required className={styles.select} name="priority" onChange={handleChange}>
+            <option value="">Select priority</option>
             <option value="high">
               high
             </option>
@@ -77,7 +77,7 @@ const CreateBugReport = ({
             </option>
           </select>
         </div>
-        <button className={styles['submit-btn']} type="button" onClick={handleSubmit}>Submit</button>
+        <input className={styles['submit-btn']} type="submit" />
       </form>
     </>
   );

@@ -30,7 +30,7 @@ const CreateProject = props => {
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="title">
           <p className={styles['font-style']}>Title:</p>
           <input placeholder="Write a project title" className={styles.input} type="text" id="title" name="title" required onChange={handleChange} />
@@ -39,7 +39,7 @@ const CreateProject = props => {
           <p className={styles['font-style']}>Description:</p>
           <textarea placeholder="Write details of the project" className={styles.description} type="text" id="description" name="description" required onChange={handleChange} />
         </label>
-        <button className={styles['submit-btn']} type="button" onClick={handleSubmit}>Submit</button>
+        <input className={styles['submit-btn']} type="submit" />
       </form>
     </>
   );

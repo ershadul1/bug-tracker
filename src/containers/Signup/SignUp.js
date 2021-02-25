@@ -24,14 +24,15 @@ const SignUp = props => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     props.signup(state);
-    props.history.push('/projects');
+    setTimeout(() => { props.history.push('/projects'); }, 3000);
   };
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="username" className={styles['font-style']}>
           <p>Username</p>
           <input className={styles.input} type="text" id="username" name="username" required onChange={handleChange} />
@@ -40,7 +41,7 @@ const SignUp = props => {
           <p>Password</p>
           <input className={styles.input} type="password" id="password" name="password" required onChange={handleChange} />
         </label>
-        <button className={styles['submit-btn']} type="button" onClick={handleSubmit}>Sign Up</button>
+        <input className={styles['submit-btn']} type="submit" />
       </form>
       <p className={styles['font-style']}>Already have an account!</p>
       <Link to="/">

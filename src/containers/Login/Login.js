@@ -24,13 +24,14 @@ const Login = props => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     props.login(state);
   };
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="username" className={styles['font-style']}>
           <p>Username:</p>
           <input className={styles.input} type="text" id="username" name="username" required onChange={handleChange} />
@@ -39,7 +40,7 @@ const Login = props => {
           <p>Password:</p>
           <input className={styles.input} type="password" id="password" name="password" required onChange={handleChange} />
         </label>
-        <button className={styles['submit-btn']} type="button" onClick={handleSubmit}>Login</button>
+        <input className={styles['submit-btn']} type="submit" />
       </form>
       <p className={styles['font-style']}>Don&apos;t have an account!</p>
       <Link to="/signup">
