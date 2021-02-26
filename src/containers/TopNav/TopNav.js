@@ -1,10 +1,12 @@
-import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useHistory, useLocation } from 'react-router-dom';
+import getNavTitle from './NavTitle';
 import styles from './TopNav.module.css';
 import arrow from '../../assets/left-arrow.svg';
 
-const TopNav = ({ navTitle }) => {
+const TopNav = () => {
+  const location = useLocation();
+  const currentRoute = location.pathname;
+  const navTitle = getNavTitle(currentRoute);
   const history = useHistory();
 
   const handleBack = () => {
@@ -25,15 +27,4 @@ const TopNav = ({ navTitle }) => {
   );
 };
 
-TopNav.propTypes = {
-  navTitle: PropTypes.string.isRequired,
-};
-
-const mapStateToProps = state => ({
-  user: state.user,
-  projects: state.projects,
-  currentBugReport: state.currentBugReport,
-  navTitle: state.navTitle,
-});
-
-export default connect(mapStateToProps, null)(TopNav);
+export default TopNav;
