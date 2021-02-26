@@ -36,7 +36,7 @@ const SignUp = props => {
           <p>Password</p>
           <input className={styles.input} type="password" id="password" name="password" required onChange={handleChange} />
         </label>
-        <input className={styles['submit-btn']} type="submit" />
+        <input className={styles['submit-btn']} type="submit" value="Sign Up" />
       </form>
       <p className={styles['font-style']}>Already have an account!</p>
       <Link to="/">

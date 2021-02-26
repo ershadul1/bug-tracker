@@ -35,11 +35,11 @@ const Login = props => {
           <p>Password:</p>
           <input className={styles.input} type="password" id="password" name="password" required onChange={handleChange} />
         </label>
-        <input className={styles['submit-btn']} type="submit" />
+        <input className={styles['submit-btn']} type="submit" value="Login" />
       </form>
       <p className={styles['font-style']}>Don&apos;t have an account!</p>
       <Link to="/signup">
-        <button className={styles.btn} type="button">SignUp</button>
+        <button className={styles.btn} type="button">Sign Up</button>
       </Link>
 
     </>
