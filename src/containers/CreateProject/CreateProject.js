@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createProject } from '../../Redux/actions/projects';
-import { changeNavTitle } from '../../Redux/actions/route';
 import styles from './CreateProject.module.css';
 
 const CreateProject = props => {
-  useEffect(() => {
-    props.changeNavTitle('Create a project');
-  }, []);
-
   const [state, setState] = useState({
     title: null,
     description: null,
@@ -47,7 +42,6 @@ const CreateProject = props => {
 
 CreateProject.propTypes = {
   createProject: PropTypes.func.isRequired,
-  changeNavTitle: PropTypes.func.isRequired,
   history: PropTypes.instanceOf(Object).isRequired,
   user: PropTypes.instanceOf(Object).isRequired,
 };
@@ -56,5 +50,5 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
-const mapDispatchToProps = { createProject, changeNavTitle };
+const mapDispatchToProps = { createProject };
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProject);

@@ -3,18 +3,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { fetchBugs } from '../../Redux/actions/bugs';
-import { changeRoute, changeNavTitle } from '../../Redux/actions/route';
 import capitalize from '../../helpers/capitalize';
 import truncate from '../../helpers/truncate';
 import styles from './BugList.module.css';
 
 const BugList = ({
-  fetchBugs, bugs, user, changeRoute, match, changeNavTitle,
+  fetchBugs, bugs, user,
 }) => {
   useEffect(() => {
     fetchBugs(user.token);
-    changeRoute(match.url);
-    changeNavTitle('Bugs');
   }, []);
 
   if (!bugs.loaded) {
@@ -53,11 +50,8 @@ const BugList = ({
 
 BugList.propTypes = {
   fetchBugs: PropTypes.func.isRequired,
-  changeRoute: PropTypes.func.isRequired,
-  changeNavTitle: PropTypes.func.isRequired,
   bugs: PropTypes.instanceOf(Object).isRequired,
   user: PropTypes.instanceOf(Object).isRequired,
-  match: PropTypes.instanceOf(Object).isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -66,5 +60,5 @@ const mapStateToProps = state => ({
   bugs: state.bugs,
 });
 
-const mapDispatchToProps = { fetchBugs, changeRoute, changeNavTitle };
+const mapDispatchToProps = { fetchBugs };
 export default connect(mapStateToProps, mapDispatchToProps)(BugList);

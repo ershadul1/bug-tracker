@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { signup } from '../../Redux/actions/users';
-import { changeNavTitle } from '../../Redux/actions/route';
 import styles from './SignUp.module.css';
 
 const SignUp = props => {
-  useEffect(() => {
-    props.changeNavTitle('Sign Up');
-  }, []);
-
   const [state, setState] = useState({
     username: null,
     password: null,
@@ -53,9 +48,8 @@ const SignUp = props => {
 
 SignUp.propTypes = {
   signup: PropTypes.func.isRequired,
-  changeNavTitle: PropTypes.func.isRequired,
   history: PropTypes.instanceOf(Object).isRequired,
 };
 
-const mapDispatchToProps = { signup, changeNavTitle };
+const mapDispatchToProps = { signup };
 export default connect(null, mapDispatchToProps)(SignUp);

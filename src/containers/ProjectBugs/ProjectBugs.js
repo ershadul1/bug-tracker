@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { fetchProjectBugs } from '../../Redux/actions/projects';
 import styles from './ProjectBugs.module.css';
-import { changeNavTitle } from '../../Redux/actions/route';
 import capitalize from '../../helpers/capitalize';
 import truncate from '../../helpers/truncate';
 
 const ProjectBugs = ({
-  fetchProjectBugs, currentProjectBugs, user, match, changeNavTitle,
+  fetchProjectBugs, currentProjectBugs, user, match,
 }) => {
   useEffect(() => {
     fetchProjectBugs(user.token, match.params.project_id);
-    changeNavTitle('Project Bugs');
   }, []);
 
   if (!currentProjectBugs.loaded) {
@@ -54,7 +52,6 @@ const ProjectBugs = ({
 
 ProjectBugs.propTypes = {
   fetchProjectBugs: PropTypes.func.isRequired,
-  changeNavTitle: PropTypes.func.isRequired,
   currentProjectBugs: PropTypes.instanceOf(Object).isRequired,
   user: PropTypes.instanceOf(Object).isRequired,
   match: PropTypes.instanceOf(Object).isRequired,
@@ -66,5 +63,5 @@ const mapStateToProps = state => ({
   currentProjectBugs: state.currentProjectBugs,
 });
 
-const mapDispatchToProps = { fetchProjectBugs, changeNavTitle };
+const mapDispatchToProps = { fetchProjectBugs };
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectBugs);

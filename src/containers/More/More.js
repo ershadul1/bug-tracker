@@ -1,19 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
-import { changeRoute, changeNavTitle } from '../../Redux/actions/route';
 import { logout } from '../../Redux/actions/users';
 import styles from './More.module.css';
 
 const More = ({
-  user, changeRoute, match, changeNavTitle, logout,
+  user, logout,
 }) => {
-  useEffect(() => {
-    changeRoute(match.url);
-    changeNavTitle('More');
-  }, []);
-
   const handleLogout = () => {
     logout();
   };
@@ -29,16 +22,13 @@ const More = ({
 };
 
 More.propTypes = {
-  changeRoute: PropTypes.func.isRequired,
-  changeNavTitle: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   user: PropTypes.instanceOf(Object).isRequired,
-  match: PropTypes.instanceOf(Object).isRequired,
 };
 
 const mapStateToProps = state => ({
   user: state.user,
 });
 
-const mapDispatchToProps = { changeRoute, changeNavTitle, logout };
+const mapDispatchToProps = { logout };
 export default connect(mapStateToProps, mapDispatchToProps)(More);

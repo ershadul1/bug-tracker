@@ -3,17 +3,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createBugReport } from '../../Redux/actions/bugs';
 import { fetchProjects } from '../../Redux/actions/projects';
-import { changeRoute, changeNavTitle } from '../../Redux/actions/route';
 import styles from './CreateBugReport.module.css';
 
 const CreateBugReport = ({
   user, projects, createBugReport, history,
-  fetchProjects, changeRoute, match, changeNavTitle,
+  fetchProjects,
 }) => {
   useEffect(() => {
     fetchProjects(user.token);
-    changeRoute(match.url);
-    changeNavTitle('Report A Bug');
   }, []);
 
   const [state, setState] = useState({
@@ -86,12 +83,9 @@ const CreateBugReport = ({
 CreateBugReport.propTypes = {
   createBugReport: PropTypes.func.isRequired,
   fetchProjects: PropTypes.func.isRequired,
-  changeRoute: PropTypes.func.isRequired,
-  changeNavTitle: PropTypes.func.isRequired,
   history: PropTypes.instanceOf(Object).isRequired,
   user: PropTypes.instanceOf(Object).isRequired,
   projects: PropTypes.instanceOf(Object).isRequired,
-  match: PropTypes.instanceOf(Object).isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -100,6 +94,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  createBugReport, fetchProjects, changeRoute, changeNavTitle,
+  createBugReport, fetchProjects,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CreateBugReport);

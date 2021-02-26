@@ -3,16 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { fetchProjects } from '../../Redux/actions/projects';
-import { changeRoute, changeNavTitle } from '../../Redux/actions/route';
 import styles from './ProjectList.module.css';
 
 const ProjectList = ({
-  fetchProjects, projects, user, match, changeRoute, changeNavTitle,
+  fetchProjects, projects, user,
 }) => {
   useEffect(() => {
     fetchProjects(user.token);
-    changeRoute(match.url);
-    changeNavTitle('Projects');
   }, []);
 
   if (!projects.loaded) {
@@ -55,16 +52,13 @@ const ProjectList = ({
 
 ProjectList.propTypes = {
   fetchProjects: PropTypes.func.isRequired,
-  changeRoute: PropTypes.func.isRequired,
-  changeNavTitle: PropTypes.func.isRequired,
   projects: PropTypes.instanceOf(Object).isRequired,
   user: PropTypes.instanceOf(Object).isRequired,
-  match: PropTypes.instanceOf(Object).isRequired,
 };
 
 const mapStateToProps = state => ({
   user: state.user,
   projects: state.projects,
 });
-const mapDispatchToProps = { fetchProjects, changeRoute, changeNavTitle };
+const mapDispatchToProps = { fetchProjects };
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectList);

@@ -4,8 +4,6 @@ import projectsReducer from './projects';
 import bugsReducer from './bugs';
 import currentBugReducer from './currentBug';
 import currentProjectBugsReducer from './currentProjectBugs';
-import currentRouteReducer from './currentRoute';
-import navTitleReducer from './navTitle';
 import errorReducer from './error';
 
 const rootReducer = combineReducers({
@@ -14,8 +12,6 @@ const rootReducer = combineReducers({
   bugs: bugsReducer,
   currentProjectBugs: currentProjectBugsReducer,
   currentBugReport: currentBugReducer,
-  currentRoute: currentRouteReducer,
-  navTitle: navTitleReducer,
   error: errorReducer,
 });
 
