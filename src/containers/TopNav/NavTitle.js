@@ -3,6 +3,7 @@ const titles = {
   '/projects': 'All Projects',
   '/bugs': 'All Bug Reports',
   '/more': 'More',
+  '/signup': 'Sign Up',
 };
 
 const getNavTitle = route => titles[route];
