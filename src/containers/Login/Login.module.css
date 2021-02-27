@@ -1,0 +1,39 @@
+.input {
+  border: 1px solid rgb(219, 218, 218);
+  height: 7vh;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.5vh;
+}
+
+.font-style {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.5vh;
+}
+
+.submit-btn {
+  border: 1px solid lightgreen;
+  width: 100%;
+  padding: 20px;
+  margin: 5vh 0;
+  background: rgb(151, 228, 147);
+  color: rgb(255, 255, 255);
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.5vh;
+  font-weight: 700;
+}
+
+.btn {
+  border: 1px solid rgb(236, 196, 103);
+  width: 30%;
+  padding: 5px;
+  margin: 10px 0;
+  background: rgb(246, 206, 96);
+  color: rgb(255, 255, 255);
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vh;
+  font-weight: 700;
+}

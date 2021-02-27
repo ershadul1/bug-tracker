@@ -1,0 +1,91 @@
+.details {
+  background-color: #fff;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: 1px solid rgb(231, 229, 229);
+}
+
+.comments-container {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid rgb(231, 229, 229);
+}
+
+.comment-header {
+  color: red;
+}
+
+.comment-form {
+  display: flex;
+}
+
+.comment-form textarea {
+  width: 80%;
+  padding: 10px 8px;
+  border-radius: 5px;
+  border: 1px solid rgb(206, 203, 203);
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vh;
+}
+
+.comment-form button {
+  width: 20%;
+  padding: 0;
+  border: 1px solid rgb(206, 203, 203);
+  background-color: inherit;
+  border-radius: 5px;
+}
+
+.comment {
+  word-wrap: break-word;
+  padding: 10px;
+  border: 1px solid rgb(231, 227, 227);
+  background-color: inherit;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2vh;
+}
+
+.send {
+  width: 20px;
+  height: 20px;
+}
+
+.font-style {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3vh;
+  word-wrap: break-word;
+  font-weight: 300;
+}
+
+.font-style-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 4vh;
+  word-wrap: break-word;
+  font-weight: 300;
+}
+
+.yes-btn {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  background: rgb(151, 228, 147);
+  color: rgb(255, 255, 255);
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.2vh;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.cancel-btn {
+  border: none;
+  width: 100%;
+  padding: 10px;
+  background: rgb(255, 132, 116);
+  color: rgb(255, 255, 255);
+  font-family: 'Roboto', sans-serif;
+  font-size: 3.2vh;
+  font-weight: 700;
+  margin: 10px 0;
+}
